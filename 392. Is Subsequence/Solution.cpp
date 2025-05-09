@@ -1,18 +1,21 @@
+// Time Complexity: O(N)
+// Space Complexity : O(1)
 class Solution {
 public:
     bool isSubsequence(string s, string t) {
-        if(s.size() == 0) return true;
+        if (s.empty()) return true;
 
-        int i = 0;
-        int nextLetterIndex = 0;;
+        int targetIndex = 0;       
 
-        while(i < t.size()){
-            if(nextLetterIndex <= s.size() && t[i] == s[nextLetterIndex]){
-                nextLetterIndex++;
-                if(nextLetterIndex == s.size()) break;
+        for (auto currentChar : t) {
+            if (currentChar == s[targetIndex]) {
+                targetIndex++;
+
+                if (targetIndex == s.size()){
+                    return true;
+                }
             }
-            i++;
         }
-        return nextLetterIndex == s.size();
+        return false;
     }
 };
