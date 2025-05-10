@@ -1,26 +1,22 @@
+// Time complexity: O(n)
+// Space complexity: O(1)
+
 class Solution {
 public:
     int lengthOfLongestSubstring(string s) {
-        int left = 0;
-        int longestSubstrSize = 0;
         unordered_set<char> charset;
+        int left = 0;
+        int longestSubstringWithUniqueCharacters = 0;
 
-        for(int right = 0; right < s.size(); right++){
-            char currentCharacter = s[right];
-            while(charset.contains(currentCharacter)){
+        for (int right = 0; right < s.size(); right++) {
+            char currentChar = s[right];
+            while(charset.contains(currentChar)){
                 charset.erase(s[left]);
                 left++;
             }
-
-            charset.insert(currentCharacter);
-            longestSubstrSize = max(longestSubstrSize, right - left + 1);
+            charset.insert(currentChar);
+            longestSubstringWithUniqueCharacters = max(longestSubstringWithUniqueCharacters, (right - left) + 1);
         }
-
-        return longestSubstrSize;
+        return longestSubstringWithUniqueCharacters;
     }
-};
-
-auto init = [](){
-    ios_base::sync_with_stdio(false);
-    cin.tie(nullptr);
 };
